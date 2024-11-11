@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform cameraTarget;
 
+    [SerializeField] private Cooldown cooldown;
 
 
     //initalization
@@ -81,13 +83,21 @@ public class PlayerMovement : MonoBehaviour
         Vector3 v = rb.velocity;
         v.x = Mathf.Clamp(rb.velocity.x, minVelocity, maxVelocity);
         rb.velocity = v;
+        if (isGrounded() == true)
+        {
+            playerSpeed = 5f;
+        }
+        else
+        {
+            playerSpeed = 0.1f;
+        }
     }
 
 
     //input actions
     void Fire(InputAction.CallbackContext context)
     {
-        Debug.Log("Fired!");
+        
     }
 
     void Jump(InputAction.CallbackContext context)
@@ -95,8 +105,22 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded() == true)
         {
             rb.AddForce(new Vector2(0, jumpForce));
+            
         }
         
+        
+    }
+
+    void Dash(InputAction.CallbackContext context)
+    {
+        Debug.Log("test");
+        if (cooldown.IsCoolingDown)
+        {
+            return;
+        }
+        rb.AddForce(new Vector2(moveDirection.x * playerSpeed * 3, 10), ForceMode2D.Impulse);
+
+        cooldown.StartCooldown();
     }
 
     public bool isGrounded()

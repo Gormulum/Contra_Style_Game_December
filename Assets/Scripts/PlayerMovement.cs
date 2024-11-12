@@ -11,9 +11,17 @@ public class PlayerMovement : MonoBehaviour
     public PlayerInputActions playerInput;
 
     public float playerSpeed = 5f;
+    public float airSpeed = 2f;
     public float jumpForce = 0f;
     public float maxVelocity;
     public float minVelocity;
+
+
+
+    public float baseMaxVelocity;
+    public float baseMinVelocity;
+    public float dashMaxVelocity;
+    public float dashMinVelocity;
 
 
     Vector2 moveDirection = Vector2.zero;
@@ -26,10 +34,12 @@ public class PlayerMovement : MonoBehaviour
     InputAction move;
     InputAction fire;
     InputAction jump;
+    InputAction dash;
 
     public Transform cameraTarget;
 
-    [SerializeField] private Cooldown cooldown;
+    [SerializeField] private Cooldown dashCooldown;
+    [SerializeField] private Cooldown dashDuration;
 
 
     //initalization
@@ -60,37 +70,56 @@ public class PlayerMovement : MonoBehaviour
         jump = playerInput.Player.Jump;
         jump.Enable();
         jump.performed += Jump;
+
+        dash = playerInput.Player.Dash;
+        dash.Enable();
+        dash.performed += Dash;
     }
     private void OnDisable()
     {
         //playerInput.Disable();
         move.Disable();
-        fire.Enable();
+        fire.Disable();
         jump.Disable();
+        dash.Disable();
     }
 
     //update functions
     void Update()
     {
         moveDirection = move.ReadValue<Vector2>();
+
+        if (dashCooldown.IsCoolingDown == false)
+        {
+            maxVelocity = baseMaxVelocity;
+            minVelocity = baseMinVelocity;
+        }
+
+        if (dashCooldown.IsCoolingDown == false)
+        {
+            playerSpeed = 3;
+            playerInput.Enable();
+        }
+
+        if (isGrounded() == true)
+        {
+            rb.drag = 6f;
+        }
+        else
+        {
+            rb.drag = 0.4f;
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector2(moveDirection.x * playerSpeed, 0), ForceMode2D.Impulse);
-
-
+        
         Vector3 v = rb.velocity;
         v.x = Mathf.Clamp(rb.velocity.x, minVelocity, maxVelocity);
         rb.velocity = v;
-        if (isGrounded() == true)
-        {
-            playerSpeed = 5f;
-        }
-        else
-        {
-            playerSpeed = 0.1f;
-        }
+        
+        rb.AddForce(new Vector2(moveDirection.x * playerSpeed, 0), ForceMode2D.Impulse);
+
     }
 
 
@@ -113,14 +142,26 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash(InputAction.CallbackContext context)
     {
-        Debug.Log("test");
-        if (cooldown.IsCoolingDown)
+        if (dashDuration.IsCoolingDown == true)
         {
             return;
         }
-        rb.AddForce(new Vector2(moveDirection.x * playerSpeed * 3, 10), ForceMode2D.Impulse);
+        if (dashCooldown.IsCoolingDown == true)
+        {
+            return;
+        }
+        
+        
 
-        cooldown.StartCooldown();
+
+
+        maxVelocity = dashMaxVelocity;
+        minVelocity = dashMinVelocity;
+        playerSpeed = 12;
+        //playerInput.Disable();
+
+        dashDuration.StartCooldown();
+        dashCooldown.StartCooldown();
     }
 
     public bool isGrounded()

@@ -12,4 +12,7 @@ public class Cooldown
 
     public bool IsCoolingDown => Time.time < _nextFireTime;
     public void StartCooldown() => _nextFireTime = Time.time + cooldownTime;
+
+    public void EndCooldoown() => _nextFireTime = Time.time;
+    
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Zombie
   - Enemy
+  - Walkpath
   layers:
   - Default
   - TransparentFX

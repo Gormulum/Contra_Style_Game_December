@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxVelocity;
     public float minVelocity;
 
-
+    bool grounded;
 
     public float baseMaxVelocity;
     public float baseMinVelocity;
@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Cooldown dashCooldown;
     [SerializeField] private Cooldown dashDuration;
     [SerializeField] private Cooldown bulletCooldown;
-
 
     //initalization
     private void Awake()
@@ -145,6 +144,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     //input actions
+
+    //Projectile Firing
     void Fire(InputAction.CallbackContext context)
     {
         if (bulletCooldown.IsCoolingDown == true)
@@ -154,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
         Transform bulletTransform = Instantiate(bullet, gunEndPoint.position, Quaternion.identity);
 
-        Vector3 shootDir = (this.transform.position - gunEndPoint.position).normalized;
+        Vector3 shootDir = ((this.transform.position + new Vector3(0, 1, 0)) - gunEndPoint.position).normalized;
         bulletTransform.GetComponent<Bullet>().Setup(shootDir);
 
         bulletCooldown.StartCooldown();
@@ -169,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpForce));
             
         }
-        
+
         
     }
 
@@ -199,6 +200,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded()
     {
+
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
         {
             return true;
@@ -213,4 +215,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
+
+   
 }
+    

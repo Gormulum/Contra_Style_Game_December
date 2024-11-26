@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI_Health_Damage : MonoBehaviour
 {
+    int health = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,14 +14,17 @@ public class AI_Health_Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Bullet")
         {
-            Destroy(gameObject);
+            health--;
         }
     }
 }

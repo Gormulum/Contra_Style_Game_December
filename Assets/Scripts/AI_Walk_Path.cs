@@ -9,9 +9,11 @@ public class AI_Walk_Path : MonoBehaviour
     [SerializeField] Transform pointA;
     [SerializeField] Transform pointB;
 
+    SpriteRenderer spriteRenderer;
+
     void Start()
     {
-        
+       spriteRenderer = GetComponent<SpriteRenderer>(); 
     }
 
     // Update is called once per frame
@@ -20,11 +22,13 @@ public class AI_Walk_Path : MonoBehaviour
         if (this.transform.position.x > pointB.position.x)
         {
             speed *= -1f;
+            spriteRenderer.flipX = false;
         }
 
         if (this.transform.position.x < pointA.position.x)
         {
             speed *= -1f;
+            spriteRenderer.flipX = true;
         }
 
         this.transform.position += new Vector3(speed * Time.deltaTime, 0, 0);

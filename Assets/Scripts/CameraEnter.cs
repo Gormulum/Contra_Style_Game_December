@@ -12,10 +12,19 @@ public class CameraEnter : MonoBehaviour
 
     public Transform cameraTarget;
     bool cameraLock;
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "CameraLockOn")
+        {
+            cameraTarget.position = collision.transform.position;
+        }
+
+        if (collision.tag == "CameraDetach")
+        {
+            cameraTarget.parent = null;
+        }
         onTriggerEnter.Invoke();
-        cameraLock = true;
+        
     }
 
     private void Update()
@@ -28,8 +37,12 @@ public class CameraEnter : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.tag == "CameraLockOn")
+        {
+            cameraLock = false;
+        }
         onTriggerExit.Invoke();
-        cameraLock = false;
+        
     }
 
 

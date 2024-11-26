@@ -47,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Cooldown dashDuration;
     [SerializeField] private Cooldown bulletCooldown;
 
+    public string collidingWith = "";
+    public Vector3 colliderPosition = Vector3.zero;
+
+    
+
     //initalization
     private void Awake()
     {
@@ -186,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         
-
+        
 
 
         maxVelocity = dashMaxVelocity;
@@ -216,6 +221,33 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "CameraLockOn")
+        {
+            collidingWith = "cameraLockOn";
+            colliderPosition = other.transform.position;
+        }
+        else if (other.tag == "CameraDetach")
+        {
+            
+            collidingWith = "cameraDetach";
+            colliderPosition = other.transform.position;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "CameraLockOn")
+        {
+            collidingWith = "";
+            colliderPosition = this.transform.position;
+        }
+
+        if (collision.tag == "CameraDetach")
+        {
+            collidingWith = ""; 
+        }
+    }
 }
     

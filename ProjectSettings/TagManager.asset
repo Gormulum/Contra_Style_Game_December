@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Walkpath
   - Bullet
+  - CameraLockOn
+  - CameraDetach
   layers:
   - Default
   - TransparentFX

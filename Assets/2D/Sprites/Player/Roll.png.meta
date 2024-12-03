@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f10e8de7c7cb1404e929e17c25c9b9ad
+guid: d3dcdaaff8d47f04c9274e4e60b9e658
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -111,7 +111,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,190 +123,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton_0
+      name: Roll_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 96
-        width: 17
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e22e3de11c99ea4fb8fc1304603da23
-      internalID: 196116139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_1
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 96
-        width: 17
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33390682295e987468c66ac8d927e314
-      internalID: 947727110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_2
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 96
-        width: 17
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a1cb0fdeaff2164b89462e2962fba22
-      internalID: 1286315020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_3
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 48
-        width: 21
-        height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8bd269ce7e8f6740bd211c47ce10de8
-      internalID: 1225239278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_4
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 48
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 952d8c070729d604cacc66bb7cdb9e2d
-      internalID: -1818278786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_5
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 48
-        width: 24
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1fafcb79382ba148b382f680e33f2a9
-      internalID: -1324390862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_6
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 1
-        width: 16
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98369365145a44848b2ff5bad629cfc2
-      internalID: -1410167551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_7
-      rect:
-        serializedVersion: 2
-        x: 51
+        x: 0
         y: 0
-        width: 8
-        height: 16
+        width: 144
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ade3d33e8d2dae4d933eae3c02257b4
-      internalID: -1193733143
+      spriteID: ab19cf881343c6d4d9f49b7206974017
+      internalID: -611775150
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skeleton_8
+      name: Roll_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 1
-        width: 16
-        height: 14
+        x: 144
+        y: 0
+        width: 144
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a2023ff9e923e6429ef2f0c3b9b8974
-      internalID: -234725944
+      spriteID: 53b2bea0da19c2541999a0ab3ab47aac
+      internalID: -1074990470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Roll_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 144
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f13add65f2914c742a9bc40393a4cb64
+      internalID: -418904593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Roll_3
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 144
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a8b7afea779ef4aa9427dcda2bee35
+      internalID: 1710967910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Roll_4
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 144
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a620ad91d60914408c0117ac8204ad6
+      internalID: -1971285834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Roll_5
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 144
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23b124b724878cb49b94665dd8c086fc
+      internalID: 316472144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Roll_6
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 144
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b172a79ac4a8a45983a612a7777e93
+      internalID: 1416596015
       vertices: []
       indices: 
       edges: []
@@ -322,15 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skeleton_0: 196116139
-      Skeleton_1: 947727110
-      Skeleton_2: 1286315020
-      Skeleton_3: 1225239278
-      Skeleton_4: -1818278786
-      Skeleton_5: -1324390862
-      Skeleton_6: -1410167551
-      Skeleton_7: -1193733143
-      Skeleton_8: -234725944
+      Roll_0: -611775150
+      Roll_1: -1074990470
+      Roll_2: -418904593
+      Roll_3: 1710967910
+      Roll_4: -1971285834
+      Roll_5: 316472144
+      Roll_6: 1416596015
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

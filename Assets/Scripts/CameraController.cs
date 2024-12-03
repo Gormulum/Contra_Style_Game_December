@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
             }
             else
             {
-                targetPosition = target.TransformPoint(new Vector3(0, 1, -10));
+                targetPosition = target.TransformPoint(new Vector3(0, 0.1f, -10));
             }
 
 

@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public string collidingWith = "";
     public Vector3 colliderPosition = Vector3.zero;
 
-    
+    Animator animator;
 
     //initalization
     private void Awake()
@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
 
@@ -103,11 +104,15 @@ public class PlayerMovement : MonoBehaviour
         if (moveDirection.x == 1)
         {
             this.transform.localScale = new Vector3(1, 1, 1);
+            
+
         }
         else if (moveDirection.x == -1)
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
         }
+
+       
 
         if (dashCooldown.IsCoolingDown == false)
         {
@@ -134,6 +139,12 @@ public class PlayerMovement : MonoBehaviour
         cameraTarget.position = rb.position;
     }
 
+    private void LateUpdate()
+    {
+       
+
+    }
+
     private void FixedUpdate()
     {
         
@@ -143,7 +154,8 @@ public class PlayerMovement : MonoBehaviour
         
         rb.AddForce(new Vector2(moveDirection.x * playerSpeed, 0), ForceMode2D.Impulse);
 
-
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", rb.velocity.y);
         
     }
 
@@ -160,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
 
         Transform bulletTransform = Instantiate(bullet, gunEndPoint.position, Quaternion.identity);
 
-        Vector3 shootDir = ((this.transform.position + new Vector3(0, 1, 0)) - gunEndPoint.position).normalized;
+        Vector3 shootDir = ((this.transform.position + new Vector3(0, 0.5f, 0)) - gunEndPoint.position).normalized;
         bulletTransform.GetComponent<Bullet>().Setup(shootDir);
 
         bulletCooldown.StartCooldown();
@@ -170,10 +182,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump(InputAction.CallbackContext context)
     {
+        
         if (isGrounded() == true)
         {
-            rb.AddForce(new Vector2(0, jumpForce));
             
+            rb.AddForce(new Vector2(0, jumpForce));
+            animator.SetBool("HasJumped", isGrounded());
         }
 
         
@@ -208,10 +222,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
         {
+
+            
             return true;
+
+            
         }
         else
         {
+            
             return false;
         }
     }
@@ -234,7 +253,18 @@ public class PlayerMovement : MonoBehaviour
             collidingWith = "cameraDetach";
             colliderPosition = other.transform.position;
         }
+        
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "ground")
+        {
+            animator.SetBool("HasJumped", !isGrounded());
+        }
+    }
+
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {

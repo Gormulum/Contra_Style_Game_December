@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - CameraLockOn
   - CameraDetach
+  - ground
   layers:
   - Default
   - TransparentFX

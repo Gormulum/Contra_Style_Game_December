@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform bullet;
     [SerializeField] private Transform gunEndPoint;
-    
+
+    int i = 5;
 
     InputAction move;
     InputAction fire;
@@ -61,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        i = 5;        
     }
 
 
@@ -96,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         dash.Disable();
     }
 
+
     //update functions
     void Update()
     {
@@ -112,7 +116,8 @@ public class PlayerMovement : MonoBehaviour
             this.transform.localScale = new Vector3(-1, 1, 1);
         }
 
-       
+        
+        
 
         if (dashCooldown.IsCoolingDown == false)
         {
@@ -129,10 +134,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded() == true)
         {
             rb.drag = 6f;
+            
         }
         else
         {
             rb.drag = 0.4f;
+            
         }
 
 
@@ -261,6 +268,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.collider.tag == "ground")
         {
             animator.SetBool("HasJumped", !isGrounded());
+            
         }
     }
 

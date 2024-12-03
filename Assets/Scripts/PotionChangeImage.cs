@@ -32,4 +32,10 @@ public class PotionChangeImage : MonoBehaviour
         rawImage.uvRect = new Rect(hold, 0, 0.1428571428571429f, 1);
         
     }
+
+    public void Reset()
+    {
+        hold = 0.0f;
+        rawImage.uvRect = new Rect(0, 0, 0.1428571428571429f, 1);
+    }
 }

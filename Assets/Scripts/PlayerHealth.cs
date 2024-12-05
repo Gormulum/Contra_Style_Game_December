@@ -31,6 +31,19 @@ public class PlayerHealth : MonoBehaviour
             InvokeRepeating("HealthDeplete", 0.0f, 1);
             
         }
+
+        if (collision.tag == "Death")
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        animator.SetBool("Died", true);
+        canTakeDamage = false;
+        Invoke("PlayerRespawn", 3);
+        playerMovement.enabled = false;
     }
 
     void PlayerRespawn()
@@ -52,10 +65,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
-            animator.SetBool("Died", true);
-            canTakeDamage = false;
-            Invoke("PlayerRespawn", 3);
-            playerMovement.enabled = false;
+            Death();
         }
     }
 

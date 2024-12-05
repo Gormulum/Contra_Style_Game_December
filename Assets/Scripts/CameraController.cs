@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -9,6 +10,7 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
+    public float cameraZoom;
 
     Vector3 targetPosition = new Vector3(0, 1, -10);
 
@@ -29,11 +31,11 @@ public class CameraController : MonoBehaviour
             
             if (playerMovement.collidingWith == "cameraLockOn")
             {
-                targetPosition = playerMovement.colliderPosition + new Vector3(0, 0, -10);
+                targetPosition = playerMovement.colliderPosition + new Vector3(0, 0, cameraZoom);
             }
             else
             {
-                targetPosition = target.TransformPoint(new Vector3(0, 0.1f, -10));
+                targetPosition = target.TransformPoint(new Vector3(0, 0.1f, cameraZoom));
             }
 
 

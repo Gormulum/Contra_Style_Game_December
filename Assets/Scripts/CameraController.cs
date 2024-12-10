@@ -44,9 +44,13 @@ public class CameraController : MonoBehaviour
 
         if (playerMovement.collidingWith == "cameraDetach" )
         {
-            targetPosition = playerMovement.colliderPosition + new Vector3(0, 0, -10);
+            targetPosition = playerMovement.colliderPosition + new Vector3(0, 10, -30);
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-            locked = true;       
+
+            //transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+            //transform.position = targetPosition;
+            //locked = true;
+
         }
 
 

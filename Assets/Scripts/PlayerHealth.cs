@@ -72,9 +72,15 @@ public class PlayerHealth : MonoBehaviour
     void HealthDeplete()
     {
         health--;
-        Debug.Log(health);
         healthIcon.ChangeImageDown();
         animator.SetBool("Hurt", true);
+    }
+
+    public void HealthIncrease()
+    {
+        health++;
+        healthIcon.ChangeImageUp();
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

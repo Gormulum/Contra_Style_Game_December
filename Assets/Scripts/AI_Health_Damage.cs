@@ -5,6 +5,7 @@ using UnityEngine;
 public class AI_Health_Damage : MonoBehaviour
 {
     int health = 3;
+    public GameObject healthItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,10 @@ public class AI_Health_Damage : MonoBehaviour
     {
         if (health <= 0)
         {
+            healthItem = new GameObject();
+            healthItem.transform.position = this.transform.position;
+
+            
             Destroy(gameObject);
         }
     }

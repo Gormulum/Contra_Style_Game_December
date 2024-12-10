@@ -142,6 +142,11 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            CancelInvoke("Projectile");
+        }
+
 
         cameraTarget.position = rb.position;
     }
@@ -172,11 +177,14 @@ public class PlayerMovement : MonoBehaviour
     //Projectile Firing
     void Fire(InputAction.CallbackContext context)
     {
-        if (bulletCooldown.IsCoolingDown == true)
-        {
-            return;
-        }
+        InvokeRepeating("Projectile", 0, 0.2f);
 
+
+        
+    }
+
+    void Projectile()
+    {
         Transform bulletTransform = Instantiate(bullet, gunEndPoint.position, Quaternion.identity);
 
         Vector3 shootDir = ((this.transform.position + new Vector3(0, 0.5f, 0)) - gunEndPoint.position).normalized;
@@ -284,7 +292,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.tag == "CameraDetach")
         {
-            collidingWith = ""; 
+            collidingWith = "";
+            //cameraTarget.position = collision.transform.position;
+            
         }
     }
 }

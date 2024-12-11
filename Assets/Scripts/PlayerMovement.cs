@@ -278,6 +278,8 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("HasJumped", !isGrounded());
             
         }
+
+       
     }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -35,6 +36,13 @@ public class PlayerHealth : MonoBehaviour
         if (collision.tag == "Death")
         {
             Death();
+        }
+
+        if (collision.tag == "Health" && health != 6)
+        {
+            Debug.Log("health");
+            HealthIncrease();
+            Destroy(collision.gameObject);
         }
     }
 
@@ -92,4 +100,7 @@ public class PlayerHealth : MonoBehaviour
             animator.SetBool("Hurt", false);
         }
     }
+
+
+  
 }

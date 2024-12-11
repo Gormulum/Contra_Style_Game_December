@@ -12,6 +12,8 @@ TagManager:
   - CameraDetach
   - ground
   - Death
+  - Health
+  - Boss
   layers:
   - Default
   - TransparentFX

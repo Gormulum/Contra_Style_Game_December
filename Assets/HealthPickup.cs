@@ -11,13 +11,17 @@ public class HealthPickup : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        rb.AddForce(0, 10, 0);
+        Invoke("Force", 0.2f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        playerHealth.HealthIncrease();
-        Destroy(gameObject);
+        
+    }
+
+    void Force()
+    {
+        rb.AddForce(0, 10, 0);
     }
 
     

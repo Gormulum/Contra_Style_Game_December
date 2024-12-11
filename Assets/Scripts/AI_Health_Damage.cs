@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class AI_Health_Damage : MonoBehaviour
@@ -17,9 +18,9 @@ public class AI_Health_Damage : MonoBehaviour
     {
         if (health <= 0)
         {
-            healthItem = new GameObject();
+            
             healthItem.transform.position = this.transform.position;
-
+            Instantiate(healthItem, this.transform.position, quaternion.identity);
             
             Destroy(gameObject);
         }

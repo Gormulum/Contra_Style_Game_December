@@ -33,6 +33,12 @@ public class PlayerHealth : MonoBehaviour
             
         }
 
+        if (collision.tag == "Bone" && canTakeDamage == true)
+        {
+            HealthDeplete();
+            Invoke("CancelHurt", 0.4f);
+        }
+
         if (collision.tag == "Death")
         {
             Death();
@@ -93,13 +99,20 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" )
+        if (collision.tag == "Enemy" || collision.tag == "Bone")
         {
             
             CancelInvoke("HealthDeplete");
             animator.SetBool("Hurt", false);
         }
     }
+    
+    void CancelHurt()
+    {
+        animator.SetBool("Hurt", false);
+    }
+
+    
 
 
   

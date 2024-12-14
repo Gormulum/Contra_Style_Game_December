@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boss_AI : MonoBehaviour
@@ -8,12 +9,18 @@ public class Boss_AI : MonoBehaviour
 
 
     public GameObject player;
+
+    public Transform pointA;
+    public Transform pointB;
+    
     SpriteRenderer spriteRenderer;
     Animator animator;
-    Rigidbody2D rb;
+    CapsuleCollider2D collider;
 
-    int health = 10;
-    float speed;
+    public Transform boneProjectile;
+
+    int health = 50;
+    public float speed;
 
     int animationID;
 
@@ -22,18 +29,22 @@ public class Boss_AI : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CapsuleCollider2D>();
 
-        InvokeRepeating("Randomiser", 2, 5);
+        InvokeRepeating("Projectile", 0, 2);
     }
 
 
     void Update()
     {
-        if (this.transform.position.x > player.transform.position.x)
+        if (this.transform.position.x > pointB.position.x)
         {
             speed *= -1f;
-            spriteRenderer.flipX = false;
+        }
+
+        if (this.transform.position.x < pointA.position.x)
+        {
+            speed *= -1f;
         }
 
         if (health <= 0)
@@ -41,23 +52,12 @@ public class Boss_AI : MonoBehaviour
             Death();
         }
 
-        if (animationID == 1)
-        {
-            animator.SetBool("Attack", true);
-        }
-        else
-        {
-            animator.SetBool("Attack", false);
-        }
+       
 
-        if (animationID == 2)
-        {
-            animator.SetBool("Jump", true);
-        }
-        else
-        {
-            animator.SetBool("Jump", false);
-        }
+        this.transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+        
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -72,10 +72,21 @@ public class Boss_AI : MonoBehaviour
     void Death()
     {
         animator.SetBool("Death", true);
+        CancelInvoke("Projectile");
+        speed = 0f;
+        collider.enabled = false;
     }
 
-    void Randomiser()
+    void Projectile()
     {
-        animationID = Random.Range(0, 2);
+        Transform bulletTransform = Instantiate(boneProjectile, this.transform.position, Quaternion.identity);
+
+        Vector3 shootDir = ((this.transform.position + new Vector3(0, 0.5f, 0)) - player.transform.position).normalized;
+        bulletTransform.GetComponent<Bone>().Setup(shootDir);
     }
+
+    
+
+
+    
 }
